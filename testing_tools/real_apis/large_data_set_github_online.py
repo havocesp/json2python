@@ -3,6 +3,7 @@ City Lots San Francisco dataset (https://github.com/zemirco/sf-city-lots-json)
 """
 import json
 from datetime import datetime
+from security import safe_requests
 
 try:
     from tqdm import tqdm
@@ -13,13 +14,12 @@ from json_to_models.models.structure import compose_models
 from json_to_models.models.attr import AttrsModelCodeGenerator
 from json_to_models.models.base import generate_code
 from json_to_models.registry import ModelRegistry
-import requests
 
 URL = "https://raw.githubusercontent.com/zemirco/sf-city-lots-json/master/citylots.json"
 
 
 def load_data() -> dict:
-    r = requests.get(URL, stream=True)
+    r = safe_requests.get(URL, stream=True)
     total_size = int(r.headers.get('content-length', 0))
     block_size = 1024 * 1024
     bytes_data = b""

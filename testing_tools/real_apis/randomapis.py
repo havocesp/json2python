@@ -12,10 +12,11 @@ from json_to_models.models.base import generate_code
 from json_to_models.models.structure import compose_models
 from json_to_models.registry import ModelRegistry
 from testing_tools.real_apis import dump_response
+from security import safe_requests
 
 
 def chroniclingamerica(tag="michigan"):
-    return requests.get(f"http://chroniclingamerica.loc.gov/search/titles/results/?terms={tag}&format=json").json()
+    return safe_requests.get(f"http://chroniclingamerica.loc.gov/search/titles/results/?terms={tag}&format=json").json()
 
 
 def launchlibrary():
