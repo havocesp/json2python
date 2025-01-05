@@ -3,7 +3,6 @@ Example uses Ergast Developer API (http://ergast.com/mrd/)
 """
 
 import inflection
-import requests
 
 from json_to_models.dynamic_typing import register_datetime_classes
 from json_to_models.generator import MetadataGenerator
@@ -13,20 +12,21 @@ from json_to_models.models.structure import compose_models_flat
 from json_to_models.registry import ModelRegistry
 from testing_tools.pprint_meta_data import pretty_format_meta
 from testing_tools.real_apis import dump_response
+from security import safe_requests
 
 
 def results(season='current', round_code='last'):
-    return requests.get(f"http://ergast.com/api/f1/{season}/{round_code}/results.json") \
+    return safe_requests.get(f"http://ergast.com/api/f1/{season}/{round_code}/results.json") \
         .json()['MRData']['RaceTable']['Races']
 
 
 def drivers(season='current', round_code='last'):
-    return requests.get(f"http://ergast.com/api/f1/{season}/{round_code}/drivers.json") \
+    return safe_requests.get(f"http://ergast.com/api/f1/{season}/{round_code}/drivers.json") \
         .json()['MRData']['DriverTable']['Drivers']
 
 
 def driver_standings(season='current', round_code='last'):
-    return requests.get(f"http://ergast.com/api/f1/{season}/{round_code}/driverStandings.json") \
+    return safe_requests.get(f"http://ergast.com/api/f1/{season}/{round_code}/driverStandings.json") \
         .json()['MRData']['StandingsTable']['StandingsLists']
 
 
