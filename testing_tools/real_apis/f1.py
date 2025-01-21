@@ -16,17 +16,17 @@ from testing_tools.real_apis import dump_response
 
 
 def results(season='current', round_code='last'):
-    return requests.get(f"http://ergast.com/api/f1/{season}/{round_code}/results.json") \
+    return requests.get(f"http://ergast.com/api/f1/{season}/{round_code}/results.json", timeout=60) \
         .json()['MRData']['RaceTable']['Races']
 
 
 def drivers(season='current', round_code='last'):
-    return requests.get(f"http://ergast.com/api/f1/{season}/{round_code}/drivers.json") \
+    return requests.get(f"http://ergast.com/api/f1/{season}/{round_code}/drivers.json", timeout=60) \
         .json()['MRData']['DriverTable']['Drivers']
 
 
 def driver_standings(season='current', round_code='last'):
-    return requests.get(f"http://ergast.com/api/f1/{season}/{round_code}/driverStandings.json") \
+    return requests.get(f"http://ergast.com/api/f1/{season}/{round_code}/driverStandings.json", timeout=60) \
         .json()['MRData']['StandingsTable']['StandingsLists']
 
 

@@ -19,7 +19,7 @@ URL = "https://raw.githubusercontent.com/zemirco/sf-city-lots-json/master/citylo
 
 
 def load_data() -> dict:
-    r = requests.get(URL, stream=True)
+    r = requests.get(URL, stream=True, timeout=60)
     total_size = int(r.headers.get('content-length', 0))
     block_size = 1024 * 1024
     bytes_data = b""
