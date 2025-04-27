@@ -14,7 +14,7 @@ from testing_tools.real_apis import dump_response
 
 
 def stash_tabs():
-    return requests.get("http://api.pathofexile.com/public-stash-tabs").json()
+    return requests.get("http://api.pathofexile.com/public-stash-tabs", timeout=60).json()
 
 
 def main():
