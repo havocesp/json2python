@@ -15,16 +15,16 @@ from testing_tools.real_apis import dump_response
 
 
 def chroniclingamerica(tag="michigan"):
-    return requests.get(f"http://chroniclingamerica.loc.gov/search/titles/results/?terms={tag}&format=json").json()
+    return requests.get(f"http://chroniclingamerica.loc.gov/search/titles/results/?terms={tag}&format=json", timeout=60).json()
 
 
 def launchlibrary():
-    return requests.get(f"https://ll.thespacedevs.com/2.0.0/dashboard/starship/").json()
+    return requests.get(f"https://ll.thespacedevs.com/2.0.0/dashboard/starship/", timeout=60).json()
 
 
 def university_domains():
     return requests.get("https://raw.githubusercontent.com/Hipo/university-domains-list/master/"
-                        "world_universities_and_domains.json").json()
+                        "world_universities_and_domains.json", timeout=60).json()
 
 
 def main():
